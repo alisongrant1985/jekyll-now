@@ -1,0 +1,18 @@
+jobs:
+  build:
+    name: Ci
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Startup
+        uses: actions/checkout@v2
+      - name: Install Prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Unit Tests
+        run: ./ci/run
+
+name: Build
+
+on:
+  schedule:
+    - cron: "30 2/3 * * *"
